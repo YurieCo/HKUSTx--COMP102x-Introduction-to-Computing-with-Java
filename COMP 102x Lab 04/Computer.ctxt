@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ makeChoice()
+comment0.text=\r\n\ Use\ a\ random\ number\ generator\ to\ generate\ a\ random\ choice\ and\ then\ create\ the\ corresponding\ Choice\ object\r\n
+comment1.params=canvas
+comment1.target=void\ showChoice(comp102x.Canvas)
+comment1.text=\r\n\ Draw\ an\ image\ that\ represents\ the\ computer's\ choice\ on\ the\ given\ canvas\r\n\ \r\n\ @param\ \ \ canvas\ \ \ \ \ \ the\ canvas\ to\ draw\ on\r\n
+comment2.params=
+comment2.target=Choice\ getChoice()
+comment2.text=\r\n\ Get\ the\ choice\ object\ that\ represents\ the\ computer's\ choice\r\n\ \r\n\ @return\ \ the\ choice\ object\ that\ represents\ the\ computer's\ choice\r\n
+numComments=3

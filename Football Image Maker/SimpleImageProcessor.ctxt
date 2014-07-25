@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=image\ boundingWidth\ boundingHeight\ alpha
+comment0.target=comp102x.ColorImage\ resizeAndSetAlpha(comp102x.ColorImage,\ int,\ int,\ int)
+comment1.params=image\ alpha
+comment1.target=void\ setImageAlpha(comp102x.ColorImage,\ int)
+comment2.params=originalImage\ boundingWidth\ boundingHeight
+comment2.target=comp102x.ColorImage\ rescale(comp102x.ColorImage,\ int,\ int)
+numComments=3

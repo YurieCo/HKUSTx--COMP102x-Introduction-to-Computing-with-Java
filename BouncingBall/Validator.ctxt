@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=inputDisparity\ widthOfImage
+comment0.target=int\ validateDisparity(int,\ int)
+comment0.text=\r\n\ Validate\ the\ disparity\ input\ by\ the\ user\ and\ return\ a\ correct\ value.\r\n\ \r\n\ If\ the\ input\ disparity\ is\ small\ than\ 0,\ a\ value\ of\ 0\ should\ be\ returned;\r\n\ If\ the\ input\ disparity\ is\ larger\ than\ half\ of\ the\ width\ of\ the\ image,\ return\ half\ of\ the\ width\ of\ the\ image.\r\n\ Otherwise,\ just\ return\ the\ input\ depth.\r\n\ \r\n\ @param\ inputDisparity\ The\ depth\ entered\ by\ user.\r\n\ @param\ widthOfImage\ The\ width\ of\ the\ football\ image.\r\n\ @return\ The\ adjusted\ depth\ value\ for\ the\ football\ image.\r\n
+numComments=1

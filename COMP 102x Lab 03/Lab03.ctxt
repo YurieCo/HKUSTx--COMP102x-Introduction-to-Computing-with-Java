@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ loadAnImage()
+comment1.params=
+comment1.target=void\ loadTwoImagesOnTheSameCanvas()
+comment2.params=
+comment2.target=void\ imageAddition()
+comment3.params=
+comment3.target=void\ imageMultiplication()
+comment4.params=
+comment4.target=void\ changeColor()
+numComments=5

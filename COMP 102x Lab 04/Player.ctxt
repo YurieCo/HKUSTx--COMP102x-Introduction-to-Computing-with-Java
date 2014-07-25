@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ makeChoice()
+comment0.text=\r\n\ Ask\ the\ player\ for\ the\ choice\ and\ then\ create\ the\ corresponding\ Choice\ object\r\n
+comment1.params=canvas
+comment1.target=void\ showChoice(comp102x.Canvas)
+comment1.text=\r\n\ Draw\ an\ image\ that\ represents\ the\ player's\ choice\ on\ the\ given\ canvas\r\n\ \r\n\ @param\ \ \ canvas\ \ \ \ \ \ the\ canvas\ to\ draw\ on\r\n
+comment2.params=
+comment2.target=Choice\ getChoice()
+comment2.text=\r\n\ Get\ the\ choice\ object\ that\ represents\ the\ player's\ choice\r\n\ \r\n\ @return\ \ the\ choice\ object\ that\ represents\ the\ player's\ choice\r\n
+comment3.params=
+comment3.target=boolean\ playAgain()
+comment3.text=\r\n\ Asks\ if\ the\ player\ wants\ to\ play\ the\ game\ again.\r\n\ \r\n\ This\ method\ output\ a\ message\ on\ the\ terminal\ window\ to\ ask\ if\ the\ player\ wants\ to\ play\ again.\r\n\ A\ character\ input\ is\ then\ read\ from\ the\ player.\ If\ the\ character\ is\ 'Y'\ or\ 'y',\ the\ method\ returns\ true.\r\n\ If\ the\ character\ is\ 'N'\ or\ 'n',\ the\ method\ returns\ false.\ For\ other\ characters,\ the\ method\ repeats\ the\ same\ \r\n\ message\ on\ the\ terminal\ window\ to\ ask\ if\ the\ player\ wants\ to\ play\ again.\r\n\ \r\n\ @return\ Whether\ the\ player\ wants\ to\ play\ again.\r\n
+numComments=4

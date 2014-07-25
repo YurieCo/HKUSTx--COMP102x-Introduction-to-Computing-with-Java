@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=type\ isHit
+comment0.target=Goal(int,\ boolean)
+comment0.text=\r\n\ Constructs\ a\ goal\ of\ a\ certain\ type\ and\ initializing\ its\ hit\ status.\r\n\ \r\n\ @param\ type\ The\ type\ of\ the\ goal\ to\ be\ created.\r\n\ @param\ isHit\ The\ initial\ hit\ status\ of\ the\ goal.\r\n
+comment1.params=
+comment1.target=boolean\ isHit()
+comment1.text=\r\n\ Returns\ the\ hit\ status\ of\ the\ goal.\r\n\ @return\ the\ hit\ status\ of\ the\ goal.\r\n
+comment2.params=isHit
+comment2.target=void\ setHit(boolean)
+comment2.text=\r\n\ Sets\ the\ hit\ status\ of\ the\ goal.\r\n\ @param\ isHit\ the\ hit\ status\ of\ the\ goal\ to\ be\ updated\ to.\ \r\n
+comment3.params=
+comment3.target=int\ getType()
+comment3.text=\r\n\ Returns\ the\ type\ of\ the\ goal.\r\n\ @return\ the\ type\ of\ the\ goal.\r\n
+comment4.params=type
+comment4.target=void\ setType(int)
+comment4.text=\r\n\ Sets\ the\ type\ of\ the\ goal.\r\n\ @param\ type\ the\ type\ of\ the\ goal\ to\ be\ updated\ to.\r\n
+comment5.params=
+comment5.target=int\ getValue()
+comment5.text=\r\n\ Returns\ the\ score\ value\ of\ the\ goal.\r\n\ @return\ the\ score\ value\ of\ the\ goal.\r\n
+comment6.params=value
+comment6.target=void\ setValue(int)
+comment6.text=\r\n\ Sets\ the\ score\ value\ of\ the\ goal.\r\n\ @param\ value\ the\ score\ value\ of\ the\ goal\ to\ be\ updated\ to.\r\n
+numComments=7

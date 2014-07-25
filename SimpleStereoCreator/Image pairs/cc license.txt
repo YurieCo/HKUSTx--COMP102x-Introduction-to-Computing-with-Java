@@ -1,0 +1,5 @@
+The images in this folder are created by Mr. John Talbot under the creative commons Attribution 2.0 license [1]. Each image is divided into a left image and a right image and then resized and renamed. The purpose of modifying the images is for the demonstration of creating 3D images. The original image of "helix left.png" and "helix right.png" can be found at [2]. The original image of "Earth left.png" and "Earth right.png" can be found at [3].
+
+[1]: https://creativecommons.org/licenses/by/2.0/legalcode
+[2]: https://www.flickr.com/photos/laserstars/540743458/
+[3]: https://www.flickr.com/photos/laserstars/3927470687/

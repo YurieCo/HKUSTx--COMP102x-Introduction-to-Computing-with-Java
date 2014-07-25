@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Car1()
+comment1.params=nameOfOwner
+comment1.target=Car1(java.lang.String)
+comment2.params=dist
+comment2.target=void\ move(int)
+comment3.params=dist
+comment3.target=void\ moveCar(int)
+comment4.params=rotateAngle
+comment4.target=void\ turnCar(int)
+comment5.params=sleepTime
+comment5.target=void\ pause(int)
+numComments=6

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=depthImages\ initialStep\ currentStep\ finalStep\ initialScale\ finalScale\ initialX\ finalX\ initialY\ finalY
+comment0.target=comp102x.ColorImage\ generateIntermediateFootballImage(comp102x.ColorImage[],\ int,\ int,\ int,\ double,\ double,\ int,\ int,\ int,\ int)
+comment1.params=goals
+comment1.target=void\ updateGoalPositions(comp102x.assignment.Goal[][])
+comment2.params=highScoreRecords\ name\ level\ score
+comment2.target=comp102x.assignment.GameRecord[]\ updateHighScoreRecords(comp102x.assignment.GameRecord[],\ java.lang.String,\ int,\ int)
+numComments=3

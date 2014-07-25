@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=i\ d
+comment0.target=Week3Quiz(int,\ double)
+comment1.params=d\ i
+comment1.target=Week3Quiz(double,\ int)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+numComments=3

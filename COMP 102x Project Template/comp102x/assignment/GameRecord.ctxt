@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=name\ level\ score
+comment0.target=GameRecord(java.lang.String,\ int,\ int)
+comment0.text=\r\n\ Constructs\ a\ game\ record\ with\ a\ certain\ name,\ level\ and\ score.\r\n\ @param\ name\ the\ name\ of\ the\ player.\r\n\ @param\ level\ the\ level\ of\ the\ game\ play.\r\n\ @param\ score\ the\ score\ of\ the\ game\ play.\r\n
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment1.text=\r\n\ Returns\ the\ name\ of\ the\ player\ in\ the\ record.\r\n\ @return\ the\ name\ of\ the\ player\ in\ the\ record.\r\n
+comment2.params=name
+comment2.target=void\ setName(java.lang.String)
+comment2.text=\r\n\ Sets\ the\ name\ of\ the\ player\ in\ the\ record.\r\n\ @param\ name\ the\ name\ of\ the\ player\ to\ be\ updated\ to.\r\n
+comment3.params=
+comment3.target=int\ getLevel()
+comment3.text=\r\n\ Returns\ the\ level\ of\ the\ game\ play\ in\ the\ record.\r\n\ @return\ the\ level\ of\ the\ game\ play\ in\ the\ record.\r\n
+comment4.params=level
+comment4.target=void\ setLevel(int)
+comment4.text=\r\n\ Sets\ the\ level\ of\ the\ game\ play\ in\ the\ record.\r\n\ @param\ level\ the\ level\ of\ the\ game\ play\ to\ be\ updated\ to.\r\n
+comment5.params=
+comment5.target=int\ getScore()
+comment5.text=\r\n\ Returns\ the\ score\ of\ the\ game\ play\ in\ the\ record.\r\n\ @return\ the\ score\ of\ the\ game\ play\ in\ the\ record.\r\n
+comment6.params=score
+comment6.target=void\ setScore(int)
+comment6.text=\r\n\ Sets\ the\ score\ of\ the\ game\ play\ in\ the\ record.\r\n\ @param\ score\ the\ score\ of\ the\ game\ play\ to\ be\ updated\ to.\r\n
+numComments=7

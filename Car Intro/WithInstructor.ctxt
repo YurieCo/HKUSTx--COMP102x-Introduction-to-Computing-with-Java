@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=degree
+comment0.target=void\ Turn(int)
+comment1.params=dist
+comment1.target=void\ movedForward(int)
+comment10.params=
+comment10.target=void\ getInfo()
+comment2.params=
+comment2.target=WithInstructor()
+comment3.params=owner\ image\ cost\ gasMileage\ gasinTank
+comment3.target=WithInstructor(java.lang.String,\ java.lang.String,\ double,\ double,\ double)
+comment4.params=cost
+comment4.target=void\ setCost(double)
+comment5.params=
+comment5.target=double\ getcost()
+comment6.params=
+comment6.target=double\ getGasMileage()
+comment7.params=gasMileage
+comment7.target=void\ setGasMileage(double)
+comment8.params=
+comment8.target=double\ getGasinTank()
+comment9.params=gasinTank
+comment9.target=void\ setGasinTank(double)
+numComments=11

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Car()
+comment0.text=\r\n\ \ \ Default\ constructor\ for\ a\ Car\ object\r\n
+comment1.params=name
+comment1.target=Car(java.lang.String)
+comment1.text=\r\n\ \ \ Constructor\ for\ a\ Car\ object\ with\ a\ new\ owner\u2019s\ name\r\n\ \ \ @param\ \ \ name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name\ of\ owner\r\n
+comment2.params=dist
+comment2.target=void\ moveCar(int)
+comment2.text=\r\n\ \ \ moveCar\ moves\ a\ car\ forward\ or\ backward\ by\ dist\ units\r\n\ \ \ @param\ \ \ dist\ \ \ \ \ Moving\ distance\r\n
+comment3.params=angle
+comment3.target=void\ turnCar(double)
+comment3.text=\r\n\ \ \ turnCar\ turns\ a\ car\ by\ a\ given\ degree\r\n\ \ \ @param\ \ \ angle\ \ \ \ \ Turn\ angle\ in\ degrees\r\n
+comment4.params=
+comment4.target=int\ getOdometer()
+comment4.text=\r\n\ \ \ getOdometer\ gets\ the\ odometer\ reading\ of\ a\ car\r\n\ \ \ @return\ \ \ \ \ The\ value\ of\ odometer\r\n
+numComments=5

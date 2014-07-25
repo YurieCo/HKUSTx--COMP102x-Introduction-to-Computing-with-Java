@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=BouncingBalls()
+comment1.params=
+comment1.target=void\ setMaxDisparity()
+comment2.params=
+comment2.target=void\ animate()
+comment3.params=originalImage\ disparity
+comment3.target=comp102x.ColorImage\ createStereoImage(comp102x.ColorImage,\ int)
+comment4.params=originalImage\ disparity
+comment4.target=comp102x.ColorImage\ getStereoImage(comp102x.ColorImage,\ int)
+comment5.params=image
+comment5.target=java.awt.image.BufferedImage\ createBufferedImage(comp102x.ColorImage)
+comment6.params=alpha\ red\ green\ blue
+comment6.target=int\ toRGB(int,\ int,\ int,\ int)
+comment7.params=image\ scale
+comment7.target=void\ scaleImageAtCenter(comp102x.ColorImage,\ double)
+comment8.params=milliseconds
+comment8.target=void\ pause(int)
+numComments=9

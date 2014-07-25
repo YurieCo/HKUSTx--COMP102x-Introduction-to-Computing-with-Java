@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=initialBalance\ name\ fee
+comment0.target=CheckingAccount(double,\ java.lang.String,\ double)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ CheckingAccount\r\n
+comment1.params=wAmount
+comment1.target=void\ withdraw(double)
+comment1.text=\r\n\ The\ method\ withdraw\ withdraws\ with\ wAmount\ plue\ a\ fee\ from\ CheckingAcount\r\n\ \r\n\ @param\ \ wAmount\ \ \ the\ amount\ to\ be\ withdraw\ from\ the\ account\r\n
+numComments=2

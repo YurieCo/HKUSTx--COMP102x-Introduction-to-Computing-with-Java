@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Car2()
+comment1.params=nameOfOwner
+comment1.target=Car2(java.lang.String)
+comment2.params=nameOfOwner\ newGasMileage
+comment2.target=Car2(java.lang.String,\ double)
+comment3.params=dist
+comment3.target=void\ moveForward(int)
+comment4.params=angle
+comment4.target=void\ makeTurn(int)
+comment5.params=gasToAdd
+comment5.target=void\ addGas(double)
+comment6.params=
+comment6.target=void\ Car2Demo()
+numComments=7
