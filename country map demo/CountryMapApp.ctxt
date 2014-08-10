@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=CountryMapApp()
+comment0.text=Constructs\ a\ country\ map\ application\ instance.\ *
+comment1.params=
+comment1.target=void\ initComponents()
+comment1.text=Initializes\ and\ lays\ out\ UI\ components.\ *
+comment2.params=
+comment2.target=comp102x.Canvas\ createCanvas()
+comment2.text=Creates\ and\ configures\ the\ canvas\ instance.\ *
+comment3.params=
+comment3.target=javax.swing.JComponent\ createTopComponent()
+comment3.text=Creates\ and\ configures\ the\ top\ panel\ of\ buttons.\ *
+comment4.params=event
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment4.text=\r\n\ Implements\ ActionListener.\r\n\ ActionEvents\ are\ received\ from\ UI\ buttons.\ \r\n\ It\ changes\ the\ execution\ mode\ of\ the\ underlying\ model\r\n\ depending\ on\ which\ button\ action\ is\ received.\r\n
+comment5.params=event
+comment5.target=void\ propertyChange(java.beans.PropertyChangeEvent)
+comment5.text=\r\n\ Implements\ PropertyChangeListener.\ \r\n\ It\ listens\ to\ updates\ on\ a\ bound\ property\ "mode"\ which\ \r\n\ are\ issued\ by\ the\ underlying\ data\ model.\ This\ methods\ \r\n\ updates\ the\ status\ bar\ to\ indicate\ the\ active\ execution\ mode.\r\n
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

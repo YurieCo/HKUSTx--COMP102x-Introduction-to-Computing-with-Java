@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=
+comment0.target=HappyTCDemo()
+comment1.params=x\ y
+comment1.target=void\ moveHappyFace(int,\ int)
+numComments=2

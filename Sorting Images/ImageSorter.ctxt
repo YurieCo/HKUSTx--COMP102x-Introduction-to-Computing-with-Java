@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=
+comment0.target=ImageSorter()
+comment1.params=
+comment1.target=boolean\ isAscendinglySorted()
+comment1.text=\r\n\ Checks\ if\ the\ image\ array\ is\ sorted\ in\ ascending\ order.\r\n
+comment2.params=
+comment2.target=void\ moveInPosition()
+comment2.text=\r\n\ Moves\ the\ image\ into\ position\ after\ sorting.\r\n
+comment3.params=
+comment3.target=void\ selectSort()
+comment3.text=\r\n\ Sorts\ the\ image\ array\ by\ image\ area\ in\ ascending\ order.\r\n
+comment4.params=size
+comment4.target=int\ maxIndex(int)
+comment4.text=\r\n\ Finds\ the\ index\ of\ the\ color\ image\ with\ the\ maximum\ height.\r\n
+comment5.params=index1\ index2
+comment5.target=void\ swap(int,\ int)
+comment5.text=\r\n\ Swaps\ two\ color\ images\ in\ the\ images\ array.\r\n
+numComments=6

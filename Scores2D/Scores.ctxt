@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ initializeAllScores()
+comment0.text=\r\n\ SetScore\ asks\ user\ to\ enter\ score\ for\ each\ array\ element\r\n
+comment1.params=rowIndex\ colIndex
+comment1.target=double\ getScoreByIndices(int,\ int)
+comment2.params=
+comment2.target=void\ printAllScores()
+numComments=3

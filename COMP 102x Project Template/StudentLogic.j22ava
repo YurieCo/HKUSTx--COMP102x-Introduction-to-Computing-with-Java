@@ -1,0 +1,446 @@
+/**
+ * Implementation of the StudentLogic class for the final project of comp102x.
+ * 
+ * @author GregLarson
+ */
+
+import java.util.Random;
+import java.util.Arrays;
+
+import comp102x.ColorImage;
+import comp102x.assignment.GameLogic;
+import comp102x.assignment.GameRecord;
+import comp102x.assignment.Goal;
+import comp102x.IO;
+
+/**
+ * Implementation of the StudentLogic class for the final project of comp102x.
+ * 
+ * @author GregLarson
+ */
+public class StudentLogic implements GameLogic {
+
+    /**
+     * Returns an appropriate ColorImage object, in accordance with instructions
+     * provided separately. (Don't have the allowed space to repeat it all here!)
+     * 
+     * @param depthImages The array of available ColorImage objects to choose from.
+     * @param initialStep The initial step of the shooting animation.
+     * @param currentStep The current step of the shooting animation.
+     * @param finalStep The final step of the shooting animation.
+     * @param initialScale The initial scale of the football image.
+     * @param finalScale The final scale of the football image.
+     * @param initialX The initial x position of the football.
+     * @param finalX The final x position of the football.
+     * @param initialY The initial y position of the football.
+     * @param finalY The final y position of the football.
+     * @return The selected ColorImage object (not a copy).
+     */
+    @Override
+    public ColorImage generateIntermediateFootballImage(ColorImage[] depthImages,
+            int initialStep, int currentStep, int finalStep, double initialScale,
+            double finalScale, int initialX, int finalX, int initialY, int finalY) {
+        int n = currentStep - initialStep;
+        int d = finalStep - initialStep;
+        int imageIndex = (depthImages.length - 1) * n / d;
+        ColorImage image = depthImages[imageIndex];
+        image.setX(initialX + (finalX - initialX) * n / d);
+        image.setY(initialY + (finalY - initialY) * n / d);
+        image.setScale(initialScale + (finalScale - initialScale) * n / d);
+        return image;
+    }
+
+    /**
+     * Builds a string that represents a Goal object, for debugging.
+     * 
+     * @param goal The Goal that we are to represent as a string
+     * @return A string representation.
+     */
+    private static String goalString(Goal goal) {
+        return "<type: " + goal.getType() + ", hit: " + goal.isHit()
+                + ", score: " + goal.getValue() + ">";
+    }
+
+    /**
+     * Builds a string that represents the goals array, for debugging
+     * purposes.
+     * 
+     * @param goals - 2-d array of Goal objects
+     * @return A String representation
+     */
+    private static String goalArrayString(Goal[][] goals) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < goals.length; i++) {
+            for (int j = 0; j < goals[i].length; j++) {
+                String s = "(" + i + "," + j + "): "
+                        + goalString(goals[i][j]) + "\n";
+                sb.append(s);
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Updates the positions of a 2-d array of Goal objects, in accordance
+     * with the instructions provided separately.  Called by the program
+     * periodically.
+     * 
+     * To update the goal positions:
+     * 
+     * 1. Create an auxiliary 2-d boolean array (hasMoved) that will be used to
+     * indicate whether a corresponding Goal object has been moved.  It is 
+     * initialized to all false values.
+     * 
+     * 2. We are going to look at each Goal object that hasn't been moved, and
+     * which hasn't been hit, and try to locate one neighbor (horizontal, 
+     * vertical, or diagonal) that hasn't been moved, but which HAS been hit.
+     * 
+     * 3. If a such a neighbor is found, then we swap the two Goal objects
+     * in the goals array, and we set their corresponding values in the hasMoved
+     * array to true, so that they are not moved a second time.
+     * 
+     * In order to facilitate step 2 in an appropriate manner, I also randomize
+     * the order in which we inspect the Goals, so that we don't favor one
+     * side over the other.
+     * 
+     * The order of inspecting neighbors is in row-major order of the 9-goal
+     * matrix centered on the Goal in question. So, we first look at the 
+     * neighbor at (row-1, col-1), and then (row-1, col) then (row-1, col+1),
+     * and then process rows (row,), and (row+1,) similarly.
+     * 
+     * @param goals - 2-d array of Goal objects that are displayed on the main
+     * game screen.  Every row should have the same number of columns (it is
+     * not a jagged array).
+     */
+    @Override
+    public void updateGoalPositions(Goal[][] goals) {
+        int rows = goals.length;
+        int cols = goals[0].length;
+
+        // This array will indicated whether the goal at a particular position
+        // has been moved.  When created, it is automatically initialized
+        // to all false values.  Ideally, we might include that in with
+        // the Goal class, but in this program we cannot modify Goal.
+        boolean[][] hasMoved = new boolean[rows][cols];
+
+        // Next, I am going to be unbiased in terms of which goals get moved.
+        // To do that, I create a list of all goals which are movable and 
+        // which have not been hit, and then shuffle it.  I use that list
+        // and move each one which has a neighbor with which it can be
+        // exchanged.
+        // So, first I get a count of the # of goals which are movable and have
+        // not been hit.  (I could have built an array big enough to 
+        // fit them all, or used a List, but we haven't discussed that in class).
+        int count = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                // an assertion to show that all elements are initially false.
+                assert (hasMoved[i][j] == false);
+                
+                Goal g = goals[i][j];
+                if (g.getType() == Goal.MOVABLE && !g.isHit()) {
+                    count++;
+                }
+            }
+        }
+        // I have to store the order of the goals somewhere, and since I can't
+        // add an ordering number to the Goal class, or even create a nested
+        // auxiliary class, I'm going to create two int arrays, one for each
+        // coordinate of a Goal.  Their values are the coordinates of a
+        // particular goal.  So, for example, goalRow[0] is the row index
+        // of the first goal in the list, and goalCol[0] is the 
+        // col index of the first goal in the list.  Normally, I would
+        // have created a single array of objects to do the sorting, where
+        // each object would have both coorindates within it.
+        int[] goalRow = new int[count];
+        int[] goalCol = new int[count];
+        int index = 0;
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                Goal g = goals[row][col];
+                if (g.getType() == Goal.MOVABLE && !g.isHit()) {
+                    goalRow[index] = row;
+                    goalCol[index] = col;
+                    index++;
+                }
+            }
+        }
+
+        // shuffle the order, so we don't favor any specific goal
+        Random randomObject = new Random();
+        for (index = count - 1; index > 0; index--) {
+            int rnd = randomObject.nextInt(index);
+            int tmpRow = goalRow[index];
+            int tmpCol = goalCol[index];
+            goalRow[index] = goalRow[rnd];
+            goalCol[index] = goalCol[rnd];
+            goalRow[rnd] = tmpRow;
+            goalCol[rnd] = tmpCol;
+        }
+        
+        // Now we go through each goal in the order indicated by the goalRow
+        // and goalCol arrays, and we move the associated Goal with a 
+        // neighbor whenever possible.
+        for (index = 0; index < count; index++) {
+            int row = goalRow[index];
+            int col = goalCol[index];
+            if (!hasMoved[row][col]) {
+                // Using a flag to tell us when a valid neighbor has been found,
+                // so that we can break out of the two loops below without
+                // looking for more neighbors.
+                boolean found = false;
+                // we iterate through all possible neighbors, using
+                // the min and max functions to eliminate cases where the
+                // coordinate would lie outside the bounds of the goals array.
+                for (int i = Math.max(0, row - 1); i < Math.min(rows, row + 2) && !found; i++) {
+                    for (int j = Math.max(0, col - 1); j < Math.min(cols, col + 2) && !found; j++) {
+                        if (i == row && j == col) {
+                            // ignore out the case where the neighbor is itself
+                            continue;
+                        }
+                        // The neighbor must not have been moved thus far
+                        if (!hasMoved[i][j]) {
+                            Goal g = goals[i][j];
+                            // The neighbor must not have been hit
+                            if (g.isHit()) {
+                                // note: we don't have to check the goal type
+                                
+                                // we mark both Goals as having been moved
+                                hasMoved[row][col] = true;
+                                hasMoved[i][j] = true;
+                                
+                                // and now swap the two goals
+                                Goal tmp = goals[row][col];
+                                goals[row][col] = goals[i][j];
+                                goals[i][j] = tmp;
+                                
+                                // And setting this flag gets us out of the
+                                // two enclosing loops.  A labeled break
+                                // would work, but hasn't been discussed 
+                                // in class.
+                                found = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Compare two GameRecord scores. If the scores match, then they are 
+     * compared by level.
+     *
+     * @param record1 The first GameRecord object in the comparison.
+     * @param record2 The second GameRecord object in the comparison.
+     * @return integer -1 if the first record is less than the second, 
+     * 0 if they are the same, and 1 if the first is greater than the
+     * second.
+     */
+    private int compareScores(GameRecord record1, GameRecord record2) {
+        if (record1.getScore() > record2.getScore()) {
+            return 1;
+        }
+        if (record1.getScore() < record2.getScore()) {
+            return -1;
+        }
+        if (record1.getLevel() > record2.getLevel()) {
+            return 1;
+        }
+        if (record1.getLevel() < record2.getLevel()) {
+            return -1;
+        }
+        return 0;
+    }
+
+    /**
+     * Sorts the given GameRecord array in-place, using selection sort 
+     * (as discussed in class).  Uses the compareScores function  
+     * to do the comparisons.
+     * 
+     * @param records The array of GameRecord objects.
+     */
+    private void sortRecords(GameRecord[] records) {
+        for (int lastIndex = records.length - 1; lastIndex > 0; lastIndex--) {
+            for (int i = 0; i < lastIndex; i++) {
+                if (compareScores(records[i], records[lastIndex]) < 0) {
+                    GameRecord tmp = records[i];
+                    records[i] = records[lastIndex];
+                    records[lastIndex] = tmp;
+                }
+            }
+        }
+    }
+
+    /**
+     * Helper function to copy an array of GameRecord objects.
+     * 
+     * @param array The array to copy.
+     * @return A copy of the provided array.
+     */
+    private GameRecord[] copyArray(GameRecord[] array) {
+        return array.clone();
+    }
+
+    /**
+     * Helper function to copy a GameRecord
+     * 
+     * @param record The GameRecord to copy
+     * @return The resulting copy.
+     */
+    private GameRecord copyRecord(GameRecord record) {
+        GameRecord newRecord = new GameRecord(record.getName(), 
+                record.getLevel(), record.getScore());
+        return newRecord;
+    }
+
+    /**
+     * Appends a GameRecord to the end of the given array.  The original array
+     * is not modified.  A new array with one extra slot is created.  The
+     * provided GameRecord object is NOT duplicated - it is merely inserted
+     * into the last (empty) slot of the new array.  The resulting array will 
+     * most likely NOT be sorted.
+     * 
+     * @param array The array of GameRecord objects.
+     * @param record The record we wish to append.
+     * @return A new GameRecord array, larger than the original array by 1.
+     */
+    private GameRecord[] appendRecord(GameRecord[] array, GameRecord record) {
+        if (null == array) {
+            return null;
+        }
+        GameRecord[] arr = Arrays.copyOf(array, array.length + 1);
+        arr[array.length] = record;
+        return arr;
+    }
+
+    /**
+     * Finds the GameRecord that contains the given name, if any.
+     * 
+     * @param array An array of GameRecord objects.
+     * @param name The name to search for.
+     * @return The index of the GameRecord that has the given name. Returns -1 
+     * if it is not found.
+     */
+    private int findNameIndex(GameRecord[] array, String name) {
+        for (int i = 0; i < array.length; i++) {
+            if (name.equals(array[i].getName())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Trims an array of GameRecord objects to 10 by removing excess objects
+     * from the end.  The input array is NOT modified - the returned array is
+     * a new allocation, but the GameRecord objects themselves are not cloned.
+     * 
+     * @param array The input array of GameRecord objects.
+     * @return A trimmed copy of the input array.
+     */
+    private GameRecord[] trimToTen(GameRecord[] array) {
+        GameRecord[] arr = Arrays.copyOf(array, Math.min(array.length, 10));
+        return arr;
+    }
+
+    /**
+     * Helper function to replace one element of a GameRecord array with
+     * a different GameRecord object.
+     * 
+     * @param array An array of GameRecord objects.
+     * @param record The new GameRecord object.
+     * @param index The index where record is to be inserted.
+     * @return A shallow copy of the original GameRecord array, now containing
+     * the replacement GameRecord.
+     */
+    private GameRecord[] replaceRecord(GameRecord[] array, GameRecord record, int index) {
+
+        GameRecord[] arr = copyArray(array);
+        if (index >= 0 && index < array.length) {
+            arr[index] = record;
+        }
+        return arr;
+    }
+
+    /**
+     * Insert a GameRecord object into an array of GameRecord objects.
+     * Constructs a newly-allocated array, and sorts the array and trims it
+     * to a length of 10 before it is returned.
+     * If the GameRecord already has a GameRecord with the same name as the
+     * new record, the GameRecord with the lowest score of the two is 
+     * discarded.
+     * The input array must NOT be null, but it can have a length of 0.
+     * @param array The original GameRecord array.
+     * @param record The GameRecord object we wish to add.
+     * @return The new GameRecord array.
+     */
+    private GameRecord[] insertRecord(GameRecord[] array, GameRecord record) {
+        // assertions: array is not null (but can be empty), and record is not null
+        int nameIndex = findNameIndex(array, record.getName());
+        if (nameIndex > -1) {
+            // the name of the record has been found in the array
+            if (compareScores(record, array[nameIndex]) > 0) {
+                GameRecord[] newGames = replaceRecord(array, record, nameIndex);
+                sortRecords(newGames);
+                return newGames;
+            } else {
+                return copyArray(array);
+            }
+        }
+        GameRecord[] arr = appendRecord(array, record);
+        sortRecords(arr); // this is an in-place sort by score/level, highest first
+        return trimToTen(arr);
+    }
+
+    /**
+     * The updateHighScoreRecords() method is called by the program when the 
+     * game finishes. The method compares the record of the current game play 
+     * with those of previous game plays and update the highscore records.
+     * 
+     * @param highScoreRecords Represents the 1D array of the GameRecords of 
+     * PREVIOUS game plays. You can assume that the maximum size of this array 
+     * is 10.
+     * @param name The name of the current game play.
+     * @param level The level of the current game play.
+     * @param score The resulting score of the current game play.
+     * @return A sorted 1D array of GameRecords, after processing the 
+     * record of the current game play.
+     */
+    @Override
+    public GameRecord[] updateHighScoreRecords(GameRecord[] highScoreRecords,
+            String name, int level, int score) {
+
+        GameRecord record = new GameRecord(name, level, score);
+        GameRecord[] records = insertRecord(highScoreRecords, record);
+
+        return records;
+    }
+
+    /**
+     * class unit testing
+     *
+     * @param args - unused
+     */
+    public static void main(String[] args) {
+        IO.outputln("Testing");
+        StudentLogic logic = new StudentLogic();
+        Random randomObject = new Random();
+        Goal[][] testGoals = new Goal[3][3];
+        for (int i = 0; i < testGoals.length; i++) {
+            for (int j = 0; j < testGoals[i].length; j++) {
+                int t = randomObject.nextInt(2) + 1;
+                boolean h = randomObject.nextInt(2) == 1;
+                Goal g = new Goal(t, h);
+                g.setValue(randomObject.nextInt(100));
+                testGoals[i][j] = g;
+            }
+        }
+        IO.outputln("Test Goals: ");
+        IO.outputln(goalArrayString(testGoals));
+        logic.updateGoalPositions(testGoals);
+        IO.outputln("Updated Test Goals: ");
+        IO.outputln(goalArrayString(testGoals));
+    }
+}
+

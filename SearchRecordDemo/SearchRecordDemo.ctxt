@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ searchWord()
+comment0.text=\r\n\ Askes\ user\ for\ an\ input\ word\ and\ searches\ the\ word\ from\ a\ record.\r\n\ Prints\ whether\ the\ word\ exist\ in\ the\ record\ or\ not.\r\n\ \r\n
+comment1.params=word
+comment1.target=java.lang.String\ removeExtraSpace(java.lang.String)
+comment1.text=\r\n\ Removes\ the\ extra\ spaces\ from\ a\ word.\r\n\ \r\n\ @param\ word\ The\ String\ to\ be\ processed.\r\n
+comment2.params=recordName\ word
+comment2.target=boolean\ searchFromRecord(java.lang.String,\ java.lang.String)
+comment2.text=\r\n\ Searches\ the\ record\ and\ returns\ if\ a\ specified\ word\ is\ in\ the\ record.\r\n\ \r\n\ @param\ recordName\ The\ name\ of\ the\ record\ text\ file.\r\n\ @param\ word\ The\ word\ to\ be\ searched.\r\n\ @return\ true\ if\ the\ word\ presents\ in\ the\ record,\ false\ otherwise.\r\n
+numComments=3

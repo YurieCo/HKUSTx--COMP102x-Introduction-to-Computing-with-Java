@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=str
+comment0.target=boolean\ isPalindrome(java.lang.String)
+comment0.text=\r\n\ Checks\ if\ a\ given\ String\ is\ a\ palindrome.\ The\ checking\ should\ be\ case\ insensitive.\r\n\ \r\n\ @param\ str\ The\ String\ to\ be\ checked.\r\n\ @return\ true\ if\ str\ is\ a\ palindrome,\ false\ otherwise.\r\n
+comment1.params=inputStr
+comment1.target=java.lang.String\ reverseString(java.lang.String)
+comment1.text=\r\n\ Returns\ the\ reverse\ of\ a\ given\ String.\r\n\ \r\n\ @param\ inputStr\ The\ String\ to\ be\ reversed.\r\n\ @return\ A\ new\ String\ object\ representing\ the\ reverse\ of\ inputStr.\ \r\n
+numComments=2

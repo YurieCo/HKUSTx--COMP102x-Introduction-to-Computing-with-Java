@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=value
+comment0.target=Card(int)
+comment0.text=\r\n\ The\ constructor\r\n\ \r\n\ @param\ \ \ value\ \ \ \ the\ card\ value\r\n
+comment1.params=
+comment1.target=int\ getValue()
+comment1.text=\r\n\ Return\ the\ card\ value\r\n\ \r\n\ @return\ \ the\ card\ value\r\n
+comment2.params=value
+comment2.target=void\ setValue(int)
+comment2.text=\r\n\ Set\ the\ card\ value\r\n\ \r\n\ @param\ \ \ value\ \ \ \ the\ card\ value\r\n
+comment3.params=
+comment3.target=boolean\ isFacingUp()
+comment3.text=\r\n\ Return\ the\ card's\ "flipped"\ state\r\n\ \r\n\ @return\ \ the\ card's\ "flipped"\ state\:\ true\ indicates\ that\ the\ card\ is\ flipped\ facing\ up\ while\ false\ indicates\ otherwise\r\n
+comment4.params=facingUp
+comment4.target=void\ setFacingUp(boolean)
+comment4.text=\r\n\ Set\ the\ card's\ "flipped"\ state\r\n\ \r\n\ @param\ \ \ facingUp\ \ \ the\ new\ "flipped"\ state\:\ true\ indicates\ that\ the\ card\ is\ flipped\ facing\ up\ while\ false\ indicates\ otherwise\r\n
+comment5.params=canvas\ x\ y
+comment5.target=void\ draw(comp102x.Canvas,\ int,\ int)
+comment5.text=\r\n\ Draw\ the\ card\ image\ on\ the\ given\ canvas\r\n\ \r\n\ @param\ \ \ canvas\ \ \ \ \ \ the\ canvas\ to\ draw\ on\r\n\ @param\ \ \ x\ \ \ \ \ \ \ \ \ \ \ the\ x-position\ of\ the\ card\ image\ to\ be\ drawn\r\n\ @param\ \ \ y\ \ \ \ \ \ \ \ \ \ \ the\ y-position\ of\ the\ card\ image\ to\ be\ drawn\r\n
+numComments=6

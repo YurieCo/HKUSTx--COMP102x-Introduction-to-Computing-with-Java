@@ -1,0 +1,206 @@
+import java.util.Random;
+
+import comp102x.ColorImage;
+import comp102x.assignment.GameLogic;
+import comp102x.assignment.GameRecord;
+import comp102x.assignment.Goal;
+/**
+ *  StudentLogic Class implements four methods generateIntermediateFootballImage(), updateGoalPositions(), updateHighScoreRecords() 
+ *  and swap(). These methods complete a 3D football shooting game. 
+ */
+public class StudentLogic implements GameLogic{
+    
+    /**
+     * To find the correct Image index and set the position on Canvas.
+     * 
+     * @param   depthImages     an array of football images of different depths
+     * @param   initialStep     the initial step of the shooting animation
+     * @param   currentStep     the current step of the shooting animation 
+     * @param   finalStep       the final step of the shooting animation
+     * @param   initialScale    the initial scale of the football
+     * @param   finalScale      the final scale of the football
+     * @param   initialX        the initial x position of the football
+     * @param   finalX          the final x position of the football
+     * @param   initialY        the initial y position of the football
+     * @param   finalY          the final y position of the football
+     * @return  the image index for the current football image for the shooting animation  
+     */
+    public ColorImage generateIntermediateFootballImage(ColorImage[] depthImages, int initialStep, int currentStep, int finalStep, double initialScale, double finalScale, int initialX, int finalX, int initialY, int finalY) {
+        // Select the correct depth image
+        int size = depthImages.length;
+        int imageIndex = (currentStep - initialStep) * (size - 1) /(finalStep - initialStep);
+        //Set the x position of the selected depth image
+        int posX = initialX + (finalX - initialX) * (currentStep - initialStep) / (finalStep - initialStep);
+        depthImages[imageIndex].setX(posX);
+        //Set the y position of the selected depth image
+        int posY = initialY + (finalY - initialY) * (currentStep - initialStep) / (finalStep - initialStep);
+        depthImages[imageIndex].setY(posY);
+        //Set the scale of the selected depth image.
+        double Sscale = initialScale +  (finalScale - initialScale) * (currentStep - initialStep) / (finalStep - initialStep);
+        depthImages[imageIndex].setScale(Sscale);
+        
+        return depthImages[imageIndex];
+    }
+
+    /**
+     * Called by the program periodically(every second) to update the positions of the goals.
+     * 
+     * @param   goals     a 2-D array of Goal objects that represents the goals displayed on the main game screen
+     */
+    
+    public void updateGoalPositions(Goal[][] goals) {
+        //Declare indices for the loops.
+        int i,j;
+        //Declare "value" variables for randomied integer allocation. 
+        int val1,val2;
+        //Declare the variable for the loop to be the length of the first dimension 
+        int row = goals.length;
+        //Declare the variable for the loop to be the length of the second dimension
+        int col = goals[0].length;
+        
+        for(i=0;i<row;i++){
+            for(j=0;j<col;j++){
+                //Check if Goal object type is STATIONARY(Value is 1). Skip if True.
+                if(goals[i][j].getType()== 1)continue;                           
+                else{ //Is MOVABLE(Value is 2)
+                        //If the Goal object has "not" been hit. Skip if True.
+                        if (goals[i][j].isHit()==false) continue;
+                        else{//Goal object has been hit.
+                             //Declare and Initialize a Random Class variable with default constructor. 
+                             Random r = new Random();
+                             //Create a temporary Goal class variable
+                             Goal temp;
+                             while(true){//Infinite Loop
+                                //Assign a random integer value to val1 less than row(3) and val2 less than col(4).
+                                val1 = r.nextInt(row);
+                                val2 = r.nextInt(col);                                
+                                //Check if the randomized integer values are MOVABLE and are not hit. Otherwise continue.
+                                if(goals[val1][val2].getType()==2 && goals[val1][val2].isHit()==false){       
+                                    //Swap the value at goals[i][j] with goals[value1][value2]
+                                    temp = new Goal(goals[i][j].getType(),goals[i][j].isHit());
+                                    goals[i][j] = new Goal(goals[val1][val2].getType(),goals[val1][val2].isHit()) ;
+                                    goals[val1][val2] = new Goal(temp.getType(),temp.isHit());   
+                                    break;//Getting out of the infinite Loop
+                                }   
+                             }
+                        }
+                }    
+            }
+        }  
+    }
+    
+    /**
+     * Method is called by the program when the game finishes.
+     * Compares the record of the current game play with those of previous game plays and update the highscore records.
+     * 
+     * @param   highScoreRecords     the 1D array of the GameRecords of PREVIOUS game plays
+     * @param   name                 the name of the current game play
+     * @param   level                the level of the current game play
+     * @param   score                the score of the current game play
+     * @return  a 1D array of GameRecords after processing the record of the current game play
+     */
+    public GameRecord[] updateHighScoreRecords(GameRecord[] highScoreRecords, String name, int level, int score) {
+        
+        int size = highScoreRecords.length;
+        int i;
+        //Empty Gamerecords. Create first object and return. 
+        if (size == 0){
+                highScoreRecords = new GameRecord[size+1];
+                highScoreRecords[size] = new GameRecord(name, level, score);
+                return highScoreRecords;
+        }
+        
+        else{
+              //Size is more than 0.
+              for( i = 0; i < size ; i++){
+                  if (highScoreRecords[i].getName().equals(name)){ //If a recorded 'name' is equal to the current 'name'.
+                      if(highScoreRecords[i].getScore() == score){ //If scores are equal 
+                                if(highScoreRecords[i].getLevel() < level){ //If the level of the current play is higher.
+                                    highScoreRecords[i] = new GameRecord(name,level,score); //Change record at index i.
+                                    return sort(highScoreRecords);   
+                                }
+                                else
+                                    return sort(highScoreRecords); 
+                                
+                       } 
+                       else if(highScoreRecords[i].getScore() < score){ //Same names but current score higher.                    
+                                highScoreRecords[i] = new GameRecord(name,level,score); //Change record at index i.  
+                                return sort(highScoreRecords);
+                            }
+                      else
+                                    return sort(highScoreRecords);      
+                  }
+                  else
+                  // If Size of record is 10, Current score and Level is higher. 
+                  if (highScoreRecords[i].getScore() < score && size+1 > 10){  
+                      GameRecord temp[] = new GameRecord[size];
+                      for(int j = i ; j<size ; j++)
+                           temp[j] = new GameRecord(highScoreRecords[j].getName(), highScoreRecords[j].getLevel(), highScoreRecords[j].getScore());                           
+                      
+                      for(int j = i+1 ; j<size ; j++)
+                          highScoreRecords[j] = new GameRecord(temp[j-1].getName(), temp[j-1].getLevel(), temp[j-1].getScore());
+                      
+                      highScoreRecords[i] = new GameRecord(name,level,score);
+                      return sort(highScoreRecords);
+                  }
+              }
+              //If Size of record is less than 10.
+              if(size+1 <= 10){
+                GameRecord temp[] = new GameRecord[size+1];
+                //Create temporary array and add previous elements.
+                for(i=0;i<size;i++)
+                    temp[i] = new GameRecord(highScoreRecords[i].getName(), highScoreRecords[i].getLevel(), highScoreRecords[i].getScore());
+                  
+                
+                highScoreRecords = new GameRecord[size+1];//Increase Size of Record by 1.
+                //Add previous records to the highScoreRecords
+                for( i=0;i<size;i++)
+                    highScoreRecords[i] = new GameRecord(temp[i].getName(), temp[i].getLevel(), temp[i].getScore());
+                //Add new record and return
+                highScoreRecords[size] = new GameRecord(name, level, score);
+                return sort(highScoreRecords);
+              }
+               
+        }
+        return sort(highScoreRecords);
+    }
+    /**
+     * Sorts the GameRecord array using "Selection Sort" since the size is of  maximum 10 elements.
+     * 
+     * @param   highScoreRecords   the 1D array of the GameRecords of PREVIOUS game plays
+     * @return  Sorted highScoreRecords array first by score, and then by level in descending order.
+     */
+    public GameRecord[] sort(GameRecord[] highScoreRecords)
+    {
+        int size = highScoreRecords.length;
+        int i,j;
+        
+        //Sorting by Score of Various Records
+        for(i=0;i<size-1;i++){
+            for(j=i+1;j<size;j++){                
+                if(highScoreRecords[i].getScore()<highScoreRecords[j].getScore()){
+                         GameRecord temp = new GameRecord(highScoreRecords[i].getName(), highScoreRecords[i].getLevel(), highScoreRecords[i].getScore());
+                         highScoreRecords[i] = new GameRecord(highScoreRecords[j].getName(), highScoreRecords[j].getLevel(), highScoreRecords[j].getScore());
+                         highScoreRecords[j] = new GameRecord(temp.getName(), temp.getLevel(), temp.getScore());
+                }
+            }   
+        }
+        
+        //Sorting by Levels of Various Records
+        for(i=0;i<size-1;i++){
+            for(j=i+1;j<size;j++){
+                    if(highScoreRecords[i].getScore()==highScoreRecords[j].getScore()){
+                         if(highScoreRecords[i].getLevel()<highScoreRecords[j].getLevel()){
+                             GameRecord temp = new GameRecord(highScoreRecords[i].getName(), highScoreRecords[i].getLevel(), highScoreRecords[i].getScore());
+                             highScoreRecords[i] = new GameRecord(highScoreRecords[j].getName(), highScoreRecords[j].getLevel(), highScoreRecords[j].getScore());
+                             highScoreRecords[j] = new GameRecord(temp.getName(), temp.getLevel(), temp.getScore());
+                         }    
+                     }  
+            }
+        }
+        return highScoreRecords;
+    }    
+    
+    
+}
+

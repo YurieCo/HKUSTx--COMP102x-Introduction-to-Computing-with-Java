@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=r
+comment0.target=Circle(double)
+comment1.params=
+comment1.target=double\ area()
+comment2.params=
+comment2.target=double\ perimeter()
+numComments=3

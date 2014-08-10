@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=
+comment0.target=GameBoard()
+comment0.text=\r\n\ The\ constructor\ which\ initlizes\ the\ Card\ objects\ and\ randomizes\ the\ cards\r\n
+comment1.params=cardAIndex\ cardBIndex
+comment1.target=void\ swapCards(int,\ int)
+comment1.text=\r\n\ Swap\ two\ cards,\ card\ A\ and\ card\ B\r\n\ \r\n\ @param\ \ \ cardAIndex\ \ \ \ \ \ the\ card\ index\ of\ card\ A\r\n\ @param\ \ \ cardBIndex\ \ \ \ \ \ the\ card\ index\ of\ card\ B\r\n
+comment2.params=cardIndex
+comment2.target=void\ flipCardUp(int)
+comment2.text=\r\n\ Flip\ the\ card\ to\ be\ facing\ up\r\n\ \r\n\ @param\ \ \ cardIndex\ \ \ \ \ \ the\ card\ index\ of\ the\ card\ to\ be\ flipped\ facing\ up\r\n
+comment3.params=cardIndex
+comment3.target=void\ flipCardDown(int)
+comment3.text=\r\n\ Flip\ the\ card\ to\ be\ facing\ down\r\n\ \r\n\ @param\ \ \ cardIndex\ \ \ \ \ \ the\ card\ index\ of\ the\ card\ to\ be\ flipped\ facing\ down\r\n
+comment4.params=firstCardIndex\ secondCardIndex
+comment4.target=boolean\ checkCardMatch(int,\ int)
+comment4.text=\r\n\ Check\ if\ all\ the\ first\ card\ matches\ the\ second\ card\r\n\ \r\n\ @param\ \ \ firstCardIndex\ \ \ \ \ \ the\ card\ index\ of\ the\ first\ card\r\n\ @param\ \ \ secondCardIndex\ \ \ \ \ the\ card\ index\ of\ the\ second\ card\r\n\ @return\ \ true\ if\ first\ card\ matches\ the\ second\ card;\ false\ otherwise\r\n
+comment5.params=
+comment5.target=boolean\ checkAllMatchesFound()
+comment5.text=\r\n\ Check\ if\ all\ the\ cards\ are\ flipped\ facing\ up,\ i.e.,\ all\ matches\ are\ found\r\n\ \r\n\ @return\ \ true\ if\ all\ cards\ are\ flipped\ facing\ up;\ false\ otherwise\r\n
+comment6.params=canvas
+comment6.target=void\ draw(comp102x.Canvas)
+comment6.text=\r\n\ Draw\ the\ card\ images\ on\ the\ given\ canvas\r\n\ \r\n\ @param\ \ \ canvas\ \ \ \ \ \ the\ canvas\ to\ draw\ on\r\n
+numComments=7
